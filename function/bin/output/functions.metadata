@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Counter",
+    "scriptFile": "function.dll",
+    "entryPoint": "Company.Function.Counter.Run",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "type": "httpTrigger",
+        "direction": "In",
+        "authLevel": "Anonymous",
+        "methods": [
+          "get",
+          "post"
+        ]
+      },
+      {
+        "name": "counter",
+        "type": "cosmosDB",
+        "direction": "In",
+        "databaseName": "%DatabaseName%",
+        "collectionName": "%CollectionName%",
+        "connectionStringSetting": "CosmosDBConnectionString",
+        "id": "1",
+        "partitionKey": "1"
+      },
+      {
+        "name": "$return",
+        "type": "cosmosDB",
+        "direction": "Out",
+        "databaseName": "%DatabaseName%",
+        "collectionName": "%CollectionName%",
+        "connectionStringSetting": "CosmosDBConnectionString"
+      }
+    ]
+  }
+]
